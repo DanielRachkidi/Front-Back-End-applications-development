@@ -20,6 +20,11 @@ const c3 = document.querySelector('#c3')
 const element =['X', 'O']
 let winner = false
 let current_player = 0
+/*let player1_score = 0
+let player2_score = 0
+const player1 = document.querySelector('#player1_score')
+const player2 = document.querySelector('#player2_score')*/
+
 
 const validationLine = (el1, el2, el3) => {
     
@@ -35,6 +40,7 @@ const validationLine = (el1, el2, el3) => {
 }
 
 const cells = document.querySelectorAll('.cell')
+
 cells.forEach(cell =>{
     cell.addEventListener('click', (e) => {
         e.target.innerHTML = element[current_player]
@@ -56,7 +62,7 @@ cells.forEach(cell =>{
             console.log(winner)
             winner = true
         }
-        else if(validationLine(c1, b2, c3)){
+        else if(validationLine(c1, b2, a3)){
             console.log(winner)
             winner = true
         }
@@ -77,7 +83,12 @@ cells.forEach(cell =>{
         if(winner){
             let msg = document.querySelector('#msg')
             msg.innerHTML = ' The winner is Player' + (current_player + 1)
-            msg.styles.display = "contents"
+            msg.style.display = "block"
+          //  Scores( current_player + 1)
+
+          let score = parseInt(document.querySelector('#player' + (current_player + 1) + ' .score').innerHTML)
+          score++
+          document.querySelector('#player' + (current_player + 1) + ' .score').innerHTML = score
 
         }
 
@@ -86,11 +97,25 @@ cells.forEach(cell =>{
         }else {
             current_player = 0
         }
-
     })
 })
 
-function handleRestartGame() {
+
+
+/*function Scores(winningscore) {
+   if(winningscore === 1){
+       player1_score ++;
+       player1.innerHTML = `${player1_score}`
+   }
+   else if (winningscore === 2){
+
+    player2_score ++;
+    player2.innerHTML = `${player2_score}`
+   }
+}*/
+
+
+function RestartGame() {
     winner = false;
     current_player = 1;
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
@@ -99,4 +124,4 @@ function handleRestartGame() {
     msg.innerHTML =  ""
 }
 
-document.querySelector('.restart').addEventListener('click', handleRestartGame);
+document.querySelector('.restart').addEventListener('click', RestartGame);
