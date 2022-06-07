@@ -21,18 +21,18 @@ Router.post('/', (req, res)=>{
     res.status(200).json(todo)
 })
 
-Router.put('/:id', (request, response) => {
-  var id = todos // retrieve the id parameter value
+Router.put('/:index', (request, response) => {
+ /* var id = todos // retrieve the id parameter value
   if (todos[id - 1]){
     todos[id - 1] = request.body;
     response.status(204).send();
   }else{
     response.status(404, 'The task is not found').json();
-  }
+  }*/
 
- /* const {index} = request.params 
-  const{test} = request.query
-  console.log(index, test)*/
+  const {index} = request.params 
+  //const{test} = request.query
+  console.log(index) //test)
 });
 
 
@@ -56,13 +56,16 @@ Router.put('/:id', (request, response) => {
 
  })*/
 
- Router.delete('/', (req, res) => {
-    const id = req.body
+ Router.delete('/:index', (req, res) => {
+  const {index} = req.params 
+  const todo = req.body 
+  todos[index] = todo; 
   
-    if (id === -1) return res.status(404).json({})
+    if (index === -1) return res.status(404).json({})
   
-    users.splice(id, 1)
-    res.json('delete')
+    todos.splice(index, 1)
+    console.log(todo)
+  return res.json('The id been Deleted')
   })
 
 module.exports = Router
