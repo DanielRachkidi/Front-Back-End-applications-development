@@ -1,48 +1,49 @@
-const { Router } = require('express')
 const express = require('express')
 const morgan = require('morgan')
-const req = require('express/lib/request')
+const mongoose = require('mongoose')
 
-const todoRouter = require('./routes/todo')
-const { response } = require('express')
+try {
+    mongoose.connect('mongodb://127.0.0.1:27018/epita', {
+        authSource: "admin",
+        user: "root",
+        pass: "example",
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    console.log('Connect to DB !')
+} catch (error) {
+    console.log("Error DB connection: ", error)
+}
+
+const todoRouter = require('./routes/todoRoute')
+const messageRouter = require('./routes/messageRoute')
+
 const app = express()
-app.use(express.json())
 app.use(morgan('dev'))
+app.use(express.json())
 
-/*app.use(bodyParser.json())
-app.use(bodyParser.urlconnect({extended: true}))*/
-
-app.get('/', function(request, response){
-
-    response.status(200).send('It works !')
+app.get('/', function (request, response) {
+    return response.status(200).send('It works !')
 })
 
-app.get('/test', (request, response)=>{
+app.post('/test', (request, response) => {
+    const {name} = request.body
 
-    response.status(200).json('It works/test !')
+    if (!name && name == "") {
+        return response.status(500).json('You have to give a name')
+    }
+
+    return response.status(200).json(`My name is ${name}`)
 })
 
-app.post('/test', (request, response)=>{
-
-    console.log(request.body)
-   // response.status(200).json('data receive !')
-   const {name} = request.body
-   if(!name){
-       return response.status(500).json('data not receive')
-   }
-   return  response.status(200).json(`It works/test  ${name}!`)
+app.get('/test', (request, response) => {
+    return response.status(200).json('It works on /test !')
 })
 
-
-//app.put()
 app.use('/todos', todoRouter)
+app.use('/messages', messageRouter)
 
-const port = 4500
-app.listen(port, function(){
-
-    console.log(`'Server is listening on http://localhost:${port}`)
+const PORT = 4500
+app.listen(PORT, () => {
+    console.log('Server running on http://127.0.0.1:' + PORT)
 })
-
-
-
-
