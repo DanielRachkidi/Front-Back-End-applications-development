@@ -32,15 +32,15 @@ Router.put('/:index', (req, res) => {
 })
 
 
-Router.delete('/:_id', async (req, res) => {
+Router.delete('/:id', async (req, res) => {
     const {id} = req.params
 
 
-    if (typeof messages[_id] != 'undefined') {
-        todos.splice(_id, 1)
-        return res.status(200).json({"msg": "Todo well deleted !"})
+    if (typeof messages[id] != 'undefined') {
+        messages.splice(id, 1)
+        return res.status(200).json({"msg": "message well deleted !"})
     } else {
-        return res.status(500).json({"msg": "Todo not found !"})
+        return res.status(500).json({"msg": "message not found !"})
     }
    
     })
