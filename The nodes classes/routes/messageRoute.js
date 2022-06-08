@@ -17,7 +17,6 @@ Router.post('/', async (req, res) => {
 })
 Router.put('/:index', (req, res) => {
     const {index} = req.params // from the route
-    // const {test} = req.query // For params from url ?test=toto
     
     const {_v} = req.body // from the body
     
