@@ -15,14 +15,16 @@ Router.post('/', async (req, res) => {
     await messageObj.save()
     return res.status(200).json(messageObj)
 })
-Router.put('/:index', (req, res) => {
+
+/*
+Router.put('/:index', async (req, res) => {
     const {index} = req.params // from the route
     
-    const {_v} = req.body // from the body
+    const {name} = req.body // from the body
     
     if (typeof messages[index] != 'undefined') {
-        if (typeof _v != 'undefined') {
-            messages[index]._v = _v
+        if (typeof name != 'undefined') {
+            messages[index].name = name
         }
     } else {
         return res.status(500).json({"msg": "message not found !"})
@@ -35,16 +37,37 @@ Router.put('/:index', (req, res) => {
 Router.delete('/:id', async (req, res) => {
     const {id} = req.params
 
-
+    
     if (typeof messages[id] != 'undefined') {
         messages.splice(id, 1)
         return res.status(200).json({"msg": "message well deleted !"})
     } else {
         return res.status(500).json({"msg": "message not found !"})
     }
-   
+
     })
    
+*/
 
+
+Router.put('/:messageId', async (req, res) => {
+    const {name} = req.body.message
+    const {messageId} = req.params
+
+    const message = await messageModel.findByIdAndUpdate(messageId, {
+        name: name
+    }, {
+        new: true
+    })
+
+    return res.status(200).json(message)
+})
+
+Router.delete('/:messageId', async (req, res) => {
+    const {messageId} = req.params
+
+    await messageModel.findOneAndDelete({_id: messageId})
+    return res.status(200).json({"msg": "Message well deleted !"})
+})
 
 module.exports = Router
