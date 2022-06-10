@@ -1,27 +1,31 @@
 const mongoose = require('mongoose')
 
-
-const userSchema = new mongoose.Schema({ 
-    emial:{
-        type: STRING,
-        unique: true
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        trim: true,
+    },
+    email: {
+        type: String,
+        unique: true,
+        lowercase: true,
+        required: 'Email address is required',
+        trim: true
     },
     password: {
-        type: STRING,
-        unique: true
+        type: String,
+        required: 'Password is required',
+        trim: true
     },
-    username:{
-        type: STRING,
-        unique: true
-    },
-
-    active: true
+    active: {
+        type: Boolean,
+        default: 1
+    }
 }, {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    underscored: true    
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+    }
 })
 
-const User = mongoose.model('User', userSchema)
-
-module.exports = User
+module.exports = mongoose.model('User', userSchema)
