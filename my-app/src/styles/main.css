@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#nav{
+    background-color:brown;
+    display: flex;
+}
+
+#nav a {
+    margin: 10px;
+    text-decoration: none;
+    display: block;
+    color: blueviolet;
+}
