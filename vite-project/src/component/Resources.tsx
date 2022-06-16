@@ -1,30 +1,32 @@
 import React, {useEffect, useState} from 'react'
 
-type users={
 
-  id?:number,
-  name: string,
-  username: string
-}
 const  Resources = () => {
-    const [joke, setJoke] = useState(null)
-useEffect(() =>{
+  const [jokes, setJoke] = useState([])
+  useEffect(() =>{
+      const getData = async () => {
+          const res = await fetch('https://jsonplaceholder.typicode.com/users')
+          const responsejson = await res.json()
+          setJoke(responsejson)
+          console.log(responsejson)
 
-    const getData =  () =>{
-        fetch('https://jsonplaceholder.typicode.com/users')
-        //const responsejson = await res.json()
-        //setJoke(responsejson.json)
-        .then((response) => response.json())
-      .then((json) => console.log(json));
-        
-    }
-    getData()
-}, [])
+      }
+
+      getData()
+  }, [])
+
+  // photos = photos.map(item => Object.values(item));
 
 
-  return (
-    <div>{joke}</div>
-  )
+
+  return (<>
+    <ul>
+        { jokes.map( (jk, index) =>
+        <li key={`jk-${index}`}>
+            {jk.email}
+        </li>)}
+    </ul>
+  </>)
 }
 
 export default Resources
