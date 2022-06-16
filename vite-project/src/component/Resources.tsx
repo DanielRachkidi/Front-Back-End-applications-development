@@ -15,7 +15,6 @@ const  Resources = () => {
       getData()
   }, [])
 
-  // photos = photos.map(item => Object.values(item));
 
 
 
