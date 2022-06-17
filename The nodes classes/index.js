@@ -20,7 +20,7 @@ try {
 const todoRouter = require('./routes/todoRoute')
 const messageRouter = require('./routes/messageRoute')
 const authRouter = require('./routes/authRoute')
-const searchRouter = require('./routes/search')
+const searchRouter = require('./routes/userRoute')
 
 const app = express()
 

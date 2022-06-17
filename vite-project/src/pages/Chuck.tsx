@@ -5,10 +5,10 @@ import Resources from '../component/Resources'
 
 
 const Chuck = () => {
-    const count = 10
-  return (<>
-    <Resources/>
-</>)
+
+return (<div id="photos">
+    <Resources />
+  </div>)
 }
 
 export default Chuck

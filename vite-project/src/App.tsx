@@ -3,6 +3,8 @@ import { useState } from 'react'
 
 import Home from './pages/Home'
 import Chuck from './pages/Chuck'
+import ResgiterPage from './pages/RegisterPage'
+
 
 import {
   BrowserRouter,
@@ -16,19 +18,20 @@ import {
 const App =() => {
   return (<>
     <h1>App</h1>
-        <BrowserRouter>
         <div id="nav">
             <Link to="/">Home</Link>
             <Link to="/Chuck">Chuck</Link>
+            <Link to="/register">Register</Link>
 
         </div>
         <div className= 'container'>
             <Routes>
                 <Route path="/" element={<Home />}  />
                 <Route path="/Chuck" element={<Chuck />} />
+                <Route path="/register" element={<ResgiterPage />} />
             </Routes>
             </div>
-        </BrowserRouter>
+       =
        
     </>
  
