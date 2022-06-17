@@ -22,11 +22,14 @@ const App =() => {
             <Link to="/Chuck">Chuck</Link>
 
         </div>
+        <div className= 'container'>
             <Routes>
                 <Route path="/" element={<Home />}  />
                 <Route path="/Chuck" element={<Chuck />} />
             </Routes>
+            </div>
         </BrowserRouter>
+       
     </>
  
   )
