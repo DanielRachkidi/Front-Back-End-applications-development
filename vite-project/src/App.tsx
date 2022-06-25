@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Home from './pages/Home'
 import Chuck from './pages/Chuck'
 import ResgiterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
+
 
 
 import {
@@ -15,27 +17,23 @@ import {
 
 
 
-const App =() => {
+const App = () => {
   return (<>
-    <h1>App</h1>
-        <div id="nav">
-            <Link to="/">Home</Link>
-            <Link to="/Chuck">Chuck</Link>
-            <Link to="/register">Register</Link>
-
-        </div>
-        <div className= 'container'>
-            <Routes>
-                <Route path="/" element={<Home />}  />
-                <Route path="/Chuck" element={<Chuck />} />
-                <Route path="/register" element={<ResgiterPage />} />
-            </Routes>
-            </div>
-       =
-       
-    </>
- 
-  )
+    <div id="nav">
+      <Link to='/'>Home</Link>
+      <Link to='/chuck'>Chuck</Link>
+      <Link to="/register">Register</Link>
+      <Link to="/login">Login</Link>
+    </div>
+    <div className='container'>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/chuck" element={<Chuck />} />
+        <Route path="/register" element={<ResgiterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </div>
+  </>)
 }
 
 export default App
