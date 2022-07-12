@@ -27,21 +27,19 @@ const  Resources = () => {
     </ul>
   </>)
 }*/
-
-type Photo ={
-
-  albumId: BigInteger
-
-  id: BigInteger
-
-  title: String
-
-  url: String
-
-  thumbnailurl: String
-
+type Joke = {
+  icon_url: string,
+  id: string,
+  url: string,
+  value:string,
+  created_at: string
+  updated_at:string
 }
 
+type JokeResponseJson = {
+  result: Joke[],
+  total: number
+}
 
 
 
@@ -51,52 +49,33 @@ type Photo ={
 
 const Resources = () => {
 
-    const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
+  const [jokes, setJokes] = useState<Joke[]>([])
 
-    const [photos, setPhotos] = useState<Photo[]>([])
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch('https://api.chucknorris.io/jokes/search?query=blood')
+      const responseJson:JokeResponseJson = await res.json()
 
-   
-
-
-
-    useEffect(() => {
-
-        const getData = async () => {
-
-          const res  =  await fetch('https://jsonplaceholder.typicode.com/photos')
-
-          const responseJson: Photo[] = await res.json()
-
-          console.log(responseJson)
-
-          setPhotos(responseJson)
-
-          setIsLoading(false)
-
-        }
-
-        getData()
-
-    },[])
-
-
-
-  return (<>
-
-    {isLoading && <div>please wait data is loading</div>}
-
-    {!isLoading && <div> {photos.map((photo:Photo , index: number) => <div key={`photos-${index}`}>
-
-{photo.title}
-</div>)}
-
-</div>}
-    
-
-  </>)
-
+      setJokes(responseJson.result)
+      setIsLoading(false)
     }
 
+    getData()
+  }, [])
+
+  return (
+    <>
+      {isLoading && <div>Please wait, data are loading...</div>}
+      
+      {!isLoading && <div>
+        {jokes.map((joke:Joke, index:number) => <div className='joke' key={`jokes-${index}`}>
+          {joke.value}
+        </div>)}  
+      </div>}
+    </>
+  )
+}
 
 
 

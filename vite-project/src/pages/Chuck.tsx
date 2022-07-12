@@ -6,7 +6,7 @@ import Resources from '../component/Resources'
 
 const Chuck = () => {
 
-return (<div id="photos">
+return (<div id="jokes">
     <Resources />
   </div>)
 }

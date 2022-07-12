@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Chuck from './pages/Chuck'
 import ResgiterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
+import Messagespage from './pages/Messagespage'
 
 
 
@@ -23,6 +24,8 @@ const App = () => {
       <Link to='/'>Home</Link>
       <Link to='/chuck'>Chuck</Link>
       <Link to="/register">Register</Link>
+      <Link to="/Messagespage">Messages</Link>
+
       <Link to="/login">Login</Link>
     </div>
     <div className='container'>
@@ -30,6 +33,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/chuck" element={<Chuck />} />
         <Route path="/register" element={<ResgiterPage />} />
+        <Route path="/Messagespage" element={<Messagespage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
     </div>
