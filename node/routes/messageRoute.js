@@ -4,7 +4,7 @@ const messageModel = require('../models/messageModel')
 const Router = express.Router()
 
 Router.get('/', async (req, res) => {
-    messages = await messageModel.find({})
+    messages = await messageModel.find({}).populate('user')
     return res.status(200).json(messages)
 })
 
