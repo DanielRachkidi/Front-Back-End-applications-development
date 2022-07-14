@@ -1,11 +1,15 @@
-import React, {useState, ChangeEvent, FormEvent} from 'react'
+import React, {useState, ChangeEvent, FormEvent, useContext} from 'react'
 import { useNavigate, Link } from "react-router-dom"
 
 import { login } from '../services/auth'
 import { loginParams } from '../types/auth'
+//import { context } from '../contexts/Auth'
+import {AuthContext} from '../contexts/Auth'
+
 
 const LoginPage = () => {
   let navigate = useNavigate()
+  const context = useContext(AuthContext);
   const [form, setForm] = useState<loginParams>({
       email: '',
       password: ''
@@ -23,6 +27,8 @@ const LoginPage = () => {
     const res = await login(form)
 
     if (res.status) {
+    context.updateAuth(true)
+
       navigate('/')
     } else {
       setMsg(res.msg)

@@ -9,19 +9,19 @@ Router.get('/', async (req, res) => {
 })
 
 Router.post('/', async (req, res) => {
-    const {message, user} = req.body
+    const {message, user} = req.body   
 
     const messageObj = new messageModel(message)
     await messageObj.save()
 
-//    return res.status(200).json(messageObj)
-messageModel.updateOne( { _id: user._id }, { $push: { message: {
-    from: data.from,
-    type: 'Text',
-    text: data.message
-  }}
- }, { safe: true, upsert: true }).exec()
-return res.user(`${post.id}`)
+    return res.status(200).json(messageObj)
+// messageModel.updateOne( { _id: user._id }, { $push: { message: {
+//     from: data.from,
+//     type: 'Text',
+//     text: data.message
+//   }}
+//  }, { safe: true, upsert: true }).exec()
+// return res.user(`${post.id}`)
 })
 
 /*
@@ -55,7 +55,7 @@ Router.delete('/:id', async (req, res) => {
 
     })
    
-*/
+*/ 
 
 
 Router.put('/:messageId', async (req, res) => {

@@ -1,27 +1,29 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import { getmessage } from '../services/message'
-const Messagespage = () => {
-  const [message, setMessages] = useState('')
+import React, {useEffect, useState} from 'react'
+
+import {getMessages} from '../services/message'
+import { Message } from '../types/message'
+
+const MessagesPage = () => {
+  const [messages, setMessages] = useState<Message[]>([])
 
   useEffect(() => {
     const getData = async () => {
-      const messages = await getmessage()
-
-   
+      setMessages(await getMessages())
     }
-getData
-console.log(message)  
-  },
-  [])
-  return (
-    <div>Messagespage</div>
-      // (message []) => <div className='joke' key={message._id}>
-      // {message.map(( ) => {
-      //    <div key={message._id}>{message}</div>;
-      // }
 
+    getData()
+  }, [])
+
+  return (
+    <div id="jokes">
+
+      { messages.map(message => <div className='joke' key={message._id}>
+        {message.name}
+        { message.user && <div>{message.user.username}</div> }
+      </div>)}
+
+    </div>
   )
 }
 
-export default Messagespage
+export default MessagesPage

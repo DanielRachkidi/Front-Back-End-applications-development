@@ -1,6 +1,6 @@
 import { User } from "./user"
 
-export type Messages = {
+export type Message = {
     name: string,
     _id: string,
     user: User,
@@ -9,4 +9,9 @@ export type Messages = {
     _v: number
 
     
+}
+
+
+export type editMessageParams = {
+    name: string,
 }
