@@ -18,11 +18,11 @@ export const getMessages = async () => {
     }
 }
 
-export const getMessage = async (messageId?: string): Promise<editMessageParams | boolean> => {
+export const getMessage = async (id?: string): Promise<editMessageParams | boolean> => {
     try {
-        if (messageId == null) return false
+        if (id == null) return false
 
-        const res = await axios.get<editMessageParams>(`http://127.0.0.1:4500/messages/${messageId}`, {
+        const res = await axios.get<editMessageParams>(`http://127.0.0.1:4500/messages/${id}`, {
             withCredentials: true
         })
         return res.data
@@ -60,7 +60,9 @@ export const updateMessage = async (data: editMessageParams) => {
             withCredentials: true
         })
         return res.data
-    } catch(error: any) {
+
+    }
+     catch(error: any) {
         if ((error as AxiosError).response?.status === 500) {
             console.error(error.response?.data?.msg)
         } else {

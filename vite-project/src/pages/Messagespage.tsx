@@ -23,7 +23,9 @@ const Messagespage = () => {
       { messages.map(message => <div className='joke' key={message._id}>
         {message.name}
         { message.user && <div>{message.user.username}</div> }
-        <div><Link to={`/messages/${message._id}/edit`}>Editer</Link> <Link to={`/messages/${message._id}/delete`}>Supprimer</Link></div>
+        <div><Link to={`/messages/${message._id}/update`}>Update</Link> 
+        <Link to={`/messages/${message._id}/delete`}>Delete</Link>
+         </div>
       </div>)}
 
     </div>

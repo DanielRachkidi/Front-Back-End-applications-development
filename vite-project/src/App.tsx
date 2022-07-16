@@ -17,8 +17,8 @@ const App = () => {
         <Route path="/" element={<Default><Home /></Default>} />
         <Route path="/chuck" element={<Default><ChuckPage /></Default>} />
         <Route path="/Messagespage" element={<Default><MessagesPage /></Default>} />
-        <Route path="/Messagespage/:messageId/delete" element={<Default><MessagesDeletePage /></Default>} />
-        <Route path="/Messagespage/:messageId/edit" element={<Default><MessagesEditPage /></Default>} />
+        <Route path="/messages/:messageId/update" element={<Default><MessagesEditPage /></Default>} />
+        <Route path="/messages/:messageId/delete" element={<Default><MessagesDeletePage /></Default>} />
         <Route path="/register" element={<Auth><ResgiterPage /></Auth>} />
         <Route path="/login" element={<Auth><LoginPage /></Auth>} />
       </Routes>

@@ -15,6 +15,7 @@ Router.post('/', async (req, res) => {
     await messageObj.save()
 
     return res.status(200).json(messageObj)
+
 // messageModel.updateOne( { _id: user._id }, { $push: { message: {
 //     from: data.from,
 //     type: 'Text',
@@ -58,17 +59,15 @@ Router.delete('/:id', async (req, res) => {
 */ 
 
 
+
 Router.put('/:messageId', async (req, res) => {
     const {name} = req.body.message
     const {messageId} = req.params
 
-    const message = await messageModel.findByIdAndUpdate(messageId, {
-        name: name
-    }, {
-        new: true
+    const message = await messageModel.findByIdAndUpdate(messageId, {name: name}, { new: true
     })
 
-    return res.status(200).json(message)
+    return res.status(200).json({"msg": " update succesfully"})
 })
 
 Router.delete('/:messageId', async (req, res) => {

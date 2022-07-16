@@ -5,7 +5,7 @@ import { editMessageParams } from '../types/message'
 import { getMessage, updateMessage } from '../services/message'
 
 const MessagesEditPage = () => {
-  let {messageId} = useParams()
+  let {id} = useParams()
   let navigate = useNavigate()
 
   const [form, setForm] = useState<editMessageParams>({
@@ -15,7 +15,7 @@ const MessagesEditPage = () => {
 
   useEffect(() => {
     const getData = async() => {
-      const res = await getMessage(messageId)
+      const res = await getMessage(id)
       
       if (typeof res == "object") {
         setForm({
@@ -31,7 +31,7 @@ const MessagesEditPage = () => {
   const onSubmitHandler = async (event:FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     await updateMessage(form)
-    navigate('/messages')
+    navigate('/Messagespage')
   }
 
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,10 +40,10 @@ const MessagesEditPage = () => {
   }
 
   return (<form onSubmit={onSubmitHandler}>
-      <div>Editer le message</div>
+      <div> the message was edit</div>
 
       <div className="form-row">
-          <label>Name</label>
+          <label>New Name</label>
           <input 
               type="text"
               name="name"
@@ -53,7 +53,7 @@ const MessagesEditPage = () => {
       </div>
 
       <div className="form-row">
-          <button type='submit'>Send</button>
+          <button type='submit'>submit</button>
       </div>
     </form>)
 }

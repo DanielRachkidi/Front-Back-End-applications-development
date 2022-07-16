@@ -14,7 +14,7 @@ const CreateMessage = () => {
         event.preventDefault()
         const res = await createMessage(form)
         setForm({...form, ['name']: ''})
-        navigate('/messages', { replace: true })
+        navigate('/', { replace: true })
     }
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +25,7 @@ const CreateMessage = () => {
     return (
         <form onSubmit={onSubmitHandler}>
             <div className="form-row">
-                <label>Name</label>
+                <label>write a Message to add</label>
                 <input 
                     type="text"
                     name="name"
@@ -35,7 +35,7 @@ const CreateMessage = () => {
             </div>
 
             <div className="form-row">
-                <button type='submit'>Send</button>
+                <button type='submit'>Submit</button>
             </div>
         </form>
     )

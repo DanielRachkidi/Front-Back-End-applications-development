@@ -66,7 +66,7 @@ const Resources = () => {
 
   return (
     <>
-      {isLoading && <div>Please wait, data are loading...</div>}
+      {isLoading && <div> the system will take time</div>}
       
       {!isLoading && <div>
         {jokes.map((joke:Joke, index:number) => <div className='joke' key={`jokes-${index}`}>

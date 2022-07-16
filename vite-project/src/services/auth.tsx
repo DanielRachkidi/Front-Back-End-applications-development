@@ -47,6 +47,7 @@ export const getMe = async () => {
             withCredentials: true
         })
         return res.data
+        
     } catch(error: any) {
         if ((error as AxiosError).response?.status === 500) {
             console.error(error.response?.data?.msg)
