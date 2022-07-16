@@ -1,17 +1,19 @@
-import { User } from "./user"
+import {User} from './user';
 
 export type Message = {
-    name: string,
     _id: string,
+    name: string,
     user: User,
-    created_at: Date,
-    update_at: Date,
-    _v: number
-
-    
+    created_at?: Date,
+    updated_at?: Date,
+    __v: number
 }
 
+export type newMessageParams = {
+    name: string,
+}
 
 export type editMessageParams = {
+    _id: string,
     name: string,
 }

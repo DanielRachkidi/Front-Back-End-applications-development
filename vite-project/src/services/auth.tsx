@@ -58,14 +58,13 @@ export const getMe = async () => {
             status: false,
             msg: error.response?.data?.msg
         }
-    } 
+    }
 }
-
 
 export const logout = async () => {
     try {
-        const res = await axios.get('http://127.0.0.1:4500/me', {
-        //    withCredentials: true
+        const res = await axios.get('http://127.0.0.1:4500/logout', {
+            withCredentials: true
         })
         return res.data
     } catch(error: any) {
@@ -76,8 +75,8 @@ export const logout = async () => {
         }
 
         return {
-            status: true,
-            // msg: error.response?.data?.msg
+            status: false,
+            msg: error.response?.data?.msg
         }
-    } 
+    }
 }
