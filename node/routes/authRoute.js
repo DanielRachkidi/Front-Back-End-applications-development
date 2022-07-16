@@ -2,6 +2,7 @@ const express = require('express')
 const bcrypt = require('bcrypt')
 
 const userModel = require('../models/userModel')
+const { request, response } = require('express')
 
 const Router = express.Router()
 
@@ -95,12 +96,31 @@ Router.get('/me', async (req, res) => {
     return res.status(500).json({"msg": "You are not authenticated !"})
 })
 
+// Router.get('/logout', function(req, res) {
+
+//     request.post({
+//         url: '127.0.0.1:3000',
+//         form: {
+//           key: 'value'
+//         }
+//       },
+//       function(err, httpResponse, body) {
+
+//         if (err) return res.send('Error logging out')
+
+//          res.redirect('/login')
+//       }) 
+//     }
+    
+// )
+
 Router.get('/logout', (req, res) => {
     if (req.session.user) {
         delete req.session
     }
 
     return res.status(200).json({'msg': 'Disconnexion !'})
+
 })
 
 
